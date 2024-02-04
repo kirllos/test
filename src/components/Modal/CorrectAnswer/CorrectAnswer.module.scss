@@ -1,0 +1,68 @@
+@import "../../../styles/constants.scss";
+@import "../../../styles/mixins.scss";
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+}
+
+.container {
+  max-width: 500px;
+  position: relative;
+  margin: 0 auto;
+  min-width: 600px;
+  border-radius: 10px;
+  padding: 60px;
+  @include media-tablet {
+    max-height: fit-content;
+    padding: 20px 30px;
+  }
+  @include media-post-tablet {
+    width: 90%;
+    min-width: initial;
+  }
+  @include media-mobile {
+    padding: 10px 20px;
+  }
+}
+
+.close {
+  position: absolute !important;
+  right: 5px;
+  top: 5px;
+  @include media-tablet {
+    right: 10px;
+    top: 10px;
+  }
+}
+
+.title {
+  @include font($size: 32px, $height: 36px, $weight: 600);
+  margin-bottom: 15px;
+  @include media-tablet {
+    @include font($size: 24px, $height: normal, $weight: 600);
+  }
+  @include media-mobile {
+    @include font($size: 18px, $height: normal, $weight: 600);
+    margin-bottom: 20px;
+  }
+}
+
+.description {
+  @include font($size: 24px, $weight: 500, $height: 24px);
+  padding: 30px 30px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: 2.5px dashed $primary-color;
+  @include media-tablet {
+    @include font($size: 18px, $weight: 500);
+  }
+  @include media-post-tablet {
+    @include font($size: 24px, $weight: 500);
+  }
+  @include media-mobile {
+    @include font($size: 18px, $weight: 500);
+  }
+}

@@ -1,0 +1,10 @@
+@import "../../styles/mixins.scss";
+
+.container {
+  max-width: 1600px;
+  margin: auto;
+  @include media-content {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}

@@ -1,0 +1,26 @@
+%transition {
+  transition: all 0.3s ease;
+}
+
+%button {
+  @extend %transition;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  width: 100%;
+  @include font($size: 22px, $height: normal, $weight: 600);
+  border-radius: 10px;
+  &:disabled {
+    background: rgb(176, 176, 176);
+    border: 1px solid rgb(176, 176, 176);
+    color: gray;
+    cursor: default;
+  }
+  @include media-hover {
+    &:not(:disabled) {
+      background: white;
+      border: 1px solid black;
+    }
+  }
+}

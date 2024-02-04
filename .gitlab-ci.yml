@@ -1,0 +1,58 @@
+stages:
+  - build
+  - deploy
+
+default:
+  image: docker:24.0.5
+  services:
+    - name: docker:24.0.5-dind
+      alias: docker
+  before_script:
+    - docker info
+
+variables:
+  # IMAGE_NAME: ${CI_REGISTRY}/${CI_PROJECT_NAMESPACE}/junov_net/main-backend
+  IMAGE_NAME: ${CI_REGISTRY_IMAGE}/sobes-frontend
+  # DOCKER_HOST: tcp://dind:2375/
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_BUILDKIT: 1
+  # NAMESPACE: cluster
+
+build:
+  stage: build
+  # image: docker:19.03
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password-stdin
+  script:
+    - docker build -t my-docker-image .
+
+    - docker build --cache-from ${IMAGE_NAME}:latest --build-arg BUILDKIT_INLINE_CACHE=1 -t ${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} .
+    - docker push ${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA}
+    - docker tag ${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} ${IMAGE_NAME}:latest
+    - docker push ${IMAGE_NAME}:latest
+    # - if [[ ! -z "${CI_COMMIT_TAG}" ]]; then docker tag ${IMAGE_NAME}:${CI_COMMIT_SHORT_SHA} ${IMAGE_NAME}:${CI_COMMIT_TAG}; fi
+    # - if [[ ! -z "${CI_COMMIT_TAG}" ]]; then docker push ${IMAGE_NAME}:${CI_COMMIT_TAG}; fi
+  when: manual
+  tags:
+    - jn-build-runner
+
+deploy:
+  stage: deploy
+  before_script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY --username $CI_REGISTRY_USER --password-stdin
+  script:
+    # - cp -f .env.example /frontend/dev/.env
+    - cp -f .cicd/dev/docker-compose.yml /sobes/frontend/dev/
+    - cp -f .cicd/dev/docker-compose.override.yml /sobes/frontend/dev/
+    - cd /sobes/frontend/dev
+    - ls
+    - cat *.*
+    - echo "$IMAGE_NAME"
+    - docker pull ${IMAGE_NAME}
+    - docker compose up -d
+  when: manual
+  tags:
+    - jn-dev-server-shell
+  only:
+    - dev

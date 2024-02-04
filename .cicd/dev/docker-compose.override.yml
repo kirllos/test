@@ -1,0 +1,22 @@
+version: "3.9"
+
+name: sobes-frontend
+services:
+  frontend:
+    image: registry.gitlab.com/djwoms/junovnetqa-front/sobes-frontend:latest
+    networks:
+      - webproxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=webproxy"
+      - "traefik.http.routers.sobes-frontend.entrypoints=https"
+      - "traefik.http.routers.sobes-frontend.rule=Host(`front.sobes.g-spot.website`)"
+      - "traefik.http.routers.sobes-frontend.tls=true"
+      - "traefik.http.routers.sobes-frontend.tls.certresolver=leresolver"
+      - "traefik.http.routers.sobes-frontend.service=sobes-frontend-service"
+      - "traefik.http.services.sobes-frontend-service.loadbalancer.server.port=5173"
+
+networks:
+  webproxy:
+    name: webproxy
+    external: true

@@ -1,0 +1,91 @@
+@import "../../styles/constants.scss";
+@import "../../styles/mixins.scss";
+
+.headerContainer {
+  max-width: 1600px;
+  margin: auto;
+  padding-top: 30px;
+  margin-bottom: 20px;
+  
+  @include media-content {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  @include media-post-tablet {
+    padding-top: 20px;
+    margin-bottom: 25px;
+  }
+  @include media-mobile {
+    margin-bottom: 12px;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: #000 1px solid;
+  padding-right: 250px;
+  @include media-content {
+    padding-right: 0px;
+  }
+  @include media-post-tablet {
+    padding-bottom: 10px;
+  }
+}
+
+.nav-list {
+  display: flex;
+  column-gap: 150px;
+  list-style: none;
+  @include media-tablet {
+    width: 50%;
+    justify-content: space-between;
+    column-gap: 0;
+  }
+  @include media-mobile {
+    column-gap: 16px;
+  }
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  &:first-child {
+    @include media-header {
+      margin-right: auto;
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+  padding: 2px 13px;
+  color: #000;
+  font-family: "HelveticaNeue-Bold";
+  @include font($size: 25px);
+  @include media-post-tablet {
+    padding: 0;
+    font-size: 18px;
+  }
+  @include media-mobile {
+    font-size: 12px;
+  }
+}
+
+.logo {
+  @include font($size: 35px);
+  @include media-mobile {
+    font-size: 15px;
+  }
+}
+
+.active {
+  background: black;
+  border: none;
+  color: white;
+  @include media-post-tablet {
+    color: #3E43C6;
+    background: transparent;
+  }
+}

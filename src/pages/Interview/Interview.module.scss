@@ -1,0 +1,213 @@
+@import "../../styles/constants.scss";
+@import "../../styles/mixins.scss";
+@import "../../styles/placeholders.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+
+.container {
+  max-width: $interview-content-width;
+  margin: 0 auto;
+  padding: 20px 0px;
+  @include media-content {
+    padding: 20px 60px;
+  }
+  @include media-desktop {
+    padding: 20px 30px;
+  }
+  @include media-tablet {
+    padding: 20px 15px;
+  }
+  @include media-mobile {
+    padding: 5px 10px;
+  }
+  h4 {
+    @include font($size: 30px, $weight: 600, $height: 32px);
+    text-align: left;
+    @include media-mobile {
+      @include font($size: 18px, $weight: 600);
+    }
+  }
+}
+
+.font-montserrat {
+  font-family: Montserrat;
+}
+
+.header {
+  @include font($size: 50px, $weight: 600, $height: 60.95px);
+  font-family: Montserrat;
+  margin-bottom: 10px;
+}
+
+.parting {
+  @include font($size: 24px, $weight: 600, $height: 22px);
+  text-align: left;
+  @include media-tablet {
+    margin: 5px 0;
+  }
+  @include media-mobile {
+    @include font($size: 18px, $weight: 600);
+  }
+  color: #3e43c6;
+  font-family: Montserrat;
+}
+
+.tascks {
+  @include font($size: 15px, $weight: 600, $height: 18.29px);
+  text-align: left;
+  margin-top: 30px;
+  @include media-tablet {
+    margin-top: 0px;
+  }
+  @include media-mobile {
+    @include font($size: 18px, $weight: 600);
+  }
+  font-family: Montserrat;
+}
+
+.form {
+  width: 100%;
+  height: 320px;
+  border-radius: 10px;
+  // background-color: $primary-color;
+  border: 3px solid black;
+  padding: 17px 45px;
+  // margin-top: 20px;
+  @include media-tablet {
+    padding: 20px;
+    margin-top: 10px;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.question {
+  @include font($size: 30px, $weight: 600, $height: 32px);
+  text-align: left;
+  @include media-tablet {
+    @include font($size: 24px, $weight: 600);
+    // text-align: center;
+  }
+  @include media-mobile {
+    @include font($size: 18px, $weight: 600);
+  }
+}
+
+.textarea-wrapper {
+  margin-top: 20px;
+}
+
+.textarea-info {
+  display: flex;
+  justify-content: space-between;
+  @include font($size: 24px, $weight: 500);
+  @include media-tablet {
+    @include font($size: 18px, $weight: 500);
+  }
+  @include media-mobile {
+    @include font($size: 14px, $weight: 500);
+  }
+}
+
+.textarea {
+  width: 100%;
+  // height: 220px;
+  // border-radius: 20px;
+  resize: none;
+  border: none;
+  outline: none;
+  font-family: Montserrat;
+  // padding: 15px;
+  @include font($size: 20px);
+  text-align: left;
+  overflow-wrap: break-word;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &:disabled {
+    background-color: white;
+  }
+  @include media-tablet {
+    @include font($size: 18px);
+  }
+  @include media-mobile {
+    @include font($size: 14px);
+  }
+}
+
+.error {
+  color: #bd2727;
+}
+
+.sendButton {
+  width: 300px;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 15px 25px;
+  @extend %button;
+  // min-width: 230px;
+  @include media-mobile {
+    @include font($size: 18px, $weight: 700);
+  }
+
+  background-color: white;
+
+  @include media-hover {
+    &:not(:disabled) {
+      background-color: #3e43c6;
+      border: 1px solid #3e43c6;
+      color: white;
+    }
+  }
+}
+
+.form-controls {
+  display: flex;
+  column-gap: 20px;
+  width: 40%;
+  @include media-tablet {
+    width: 100%;
+    justify-content: space-between;
+  }
+  @include media-post-tablet {
+    flex-direction: column;
+  }
+}
+
+.nextButton {
+  width: 300px;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 25px;
+  background-color: #3e43c6;
+  border: 1px solid #3e43c6;
+  @extend %button;
+  @include media-mobile {
+    @include font($size: 18px, $weight: 700);
+  }
+  color: white;
+  @include media-hover {
+    &:not(:disabled) {
+      background-color: #3e43c6;
+      border: 1px solid #3e43c6;
+    }
+  }
+}
+
+.button-wrapper {
+  // width: 25%;
+  // min-width: 270px;
+  margin-top: 28px;
+  // margin-left: auto;
+  @include media-mobile {
+    width: 100%;
+    margin-top: 10px;
+  }
+  display: flex;
+  justify-content: flex-end;
+  gap: 20px;
+}

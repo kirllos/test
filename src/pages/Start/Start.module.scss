@@ -1,0 +1,38 @@
+@import "../../styles/constants.scss";
+@import "../../styles/mixins.scss";
+
+.root {
+  h1 {
+    text-align: left;
+    @include font($size: 40px, $weight: 700);
+    @include media-laptop {
+      @include font($size: 32px, $weight: 700);
+    }
+    @include media-tablet {
+      @include font($size: 24px, $weight: 700);
+      padding-bottom: 0;
+    }
+    @include media-post-tablet {
+      @include font($size: 18px, $weight: 700);
+    }
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-top: 35px;
+    border-bottom: 1px solid black;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
+    @include media-tablet {
+      margin-top: 20px;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+    @include media-post-tablet {
+      row-gap: 7px;
+      grid-template-columns: 1fr;
+    }
+  }
+}

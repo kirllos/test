@@ -1,0 +1,32 @@
+@import "../../../../styles/constants.scss";
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/placeholders.scss";
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  @include font($size: 30px);
+  width: 100%;
+  padding: 40px 0;
+  background-color: #3e43c6;
+  border: 1px solid #3e43c6;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  @extend %transition;
+  @include media-hover {
+    background-color: white;
+    color: black;
+    border-color: black;
+  }
+  @include media-tablet {
+    padding: 20px 0;
+    @include font($size: 24px);
+  }
+  @include media-pre-mobile {
+    padding: 20px 0;
+    @include font($size: 16px);
+  }
+}
